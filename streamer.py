@@ -99,7 +99,7 @@ class TwitterStreamer(StreamListener):
         print ("[%s] Ending the streaming..."%(self.end_t))
         self.stream.disconnect()
         
-if __ name__ == '__main__':
+if __name__ == '__main__':
     # 1. Set run time
     RUN_TIME = 100000 # How long you want the streamer to run in SECONDS
     # 2. Initialise twitter streamer (handles authorisation and sets runtime)
