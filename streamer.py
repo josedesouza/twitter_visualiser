@@ -9,7 +9,7 @@ import sys
 import numpy as np
 import pandas as pd
 
-# KEYS
+# AUTHENTICATION KEYS
 consumer_key = 'EWewHQTcGltcQAY2rVMJ6T7ny'
 consumer_secret = 'IlUGS6EKU41HyLcTOwQTGMnXzMnpUKy3sPh59RFm1vUO27GAnx'
 access_token = '842723664936275969-r80UXaIMxX7M5o9LgoGoJxsHqIaU8p5'
