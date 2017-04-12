@@ -97,7 +97,12 @@ class TwitterStreamer(StreamListener):
         self.stream.disconnect()
         
 if __ name__ == '__main__':
-    # RUN TO START RECORDING
+    # 1. Set run time
     RUN_TIME = 100000 # How long you want the streamer to run in SECONDS
+    # 2. Initialise twitter streamer (handles authorisation and sets runtime)
     streamer = TwitterStreamer(consumer_key, consumer_secret, access_token, access_token_secret, timeout= RUN_TIME)
-    streamer.start(timeout= RUN_TIME)
+    # 3. Set output locations of twitter file dumps
+    output_loc = 'all_tennis_tweets.txt'
+    output_loc_geo = 'geo_tennis_tweets.txt'
+    #4. Start streamer
+    streamer.start(timeout= RUN_TIME, output_loc=output_loc, output_loc_geo=output_loc_geo)
