@@ -58,6 +58,7 @@ class StreamRecorder(StreamListener):
         
         
     def on_error(self, status_code):
+        """ Prints error and tries to continue stream"""
         print (sys.stderr, 'Encountered error with status code:', status_code)
         t = time.strftime("%y-%m-%d %H:%M")
         print ("[%s] Stream restarted"%t)
@@ -65,13 +66,14 @@ class StreamRecorder(StreamListener):
         return False # Don't kill the stream
     
     def on_timeout(self):
+        """Closes streamer if runtime limit reached"""
         t = time.strftime("%y-%m-%d %H:%M")
         print ("[%s] Streamer Finished"%t)
         return False
     
 class TwitterStreamer(StreamListener):
     def __init__(self, consumer_key, consumer_secret, access_token, access_token_secret, timeout=None):
-        #This handles Twitter authetification and the connection to Twitter Streaming API
+        """Handles Twitter authetification and the connection to Twitter Streaming API"""
         self.auth = OAuthHandler(consumer_key, consumer_secret)
         self.auth.set_access_token(access_token, access_token_secret)
         self.start_t = time.time()
@@ -82,7 +84,7 @@ class TwitterStreamer(StreamListener):
               output_loc='all_tennis_tweets.txt',
               output_loc_geo ='geo_tennis_tweets.txt',
              timeout=None):
-        #This line filter Twitter Streams to capture data by the keywords
+        """ Starts the filter Twitter Stream to capture data by specificed keywords"""
         self.start_t = time.strftime("%y-%m-%d %H:%M")
         print ("[%s] Starting the streaming..."%(self.start_t))
         self.stream = Stream(auth = self.auth,
@@ -92,6 +94,7 @@ class TwitterStreamer(StreamListener):
         self.stream.filter(track=keywords)
         
     def stop(self):
+        """Stops the stream"""
         self.end_t = time.strftime("%y-%m-%d %H:%M")
         print ("[%s] Ending the streaming..."%(self.end_t))
         self.stream.disconnect()
