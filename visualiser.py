@@ -46,6 +46,10 @@ fig, ax = plt.subplots(1,1,figsize=(4,2))
 tweets_df['country'].value_counts().plot(ax=ax, kind='bar', 
                                          title ='Tennis keyword tweets by country', alpha=0.6)
 
+# PLot language
+fig, ax = plt.subplots(1,1,figsize=(6,3))
+tweets_df['lang'].value_counts().plot(ax=ax, kind='bar', 
+                                         title ='Tennis keyword tweets by Language', color='green')
 
 
 
