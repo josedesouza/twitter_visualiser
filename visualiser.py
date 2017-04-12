@@ -2,7 +2,7 @@
 import json
 import numpy as np
 import pandas as pd
-
+import matplotlib.pyplot as plt
 
 # Load in tweet dump file
 tweets_data_path = './all_tennis_tweets.txt'
@@ -28,4 +28,14 @@ def create_tweet_dataframe(tweets_data):
     
     return tweets
 tweets_df = create_tweet_dataframe(tweets_data)
-tweets_df.head()
+#print tweets_df.head()
+
+# Plot volume of tweets over time
+fig, ax = plt.subplots(1,1,figsize=(8,5))
+
+tweets_df[tweets_df.lang == 'en']['text'].groupby(pd.TimeGrouper(freq='1min')).count().plot(kind='line', ax=ax, label='en')
+tweets_df[tweets_df.lang == 'it']['text'].groupby(pd.TimeGrouper(freq='1min')).count().plot(kind='line', ax=ax, 
+                                                                                       color='green', label='it')
+ax.set_title('Volume of Tennis-related tweets over time by country')
+ax.legend()
+ax.set_xlabel('Minute'); ax.set_ylabel('Volume of Tweets')
