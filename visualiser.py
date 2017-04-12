@@ -41,4 +41,11 @@ ax.legend()
 ax.set_xlabel('Minute'); ax.set_ylabel('Volume of Tweets')
 plt.show()
 
+# PLOT Country
+fig, ax = plt.subplots(1,1,figsize=(4,2))
+tweets_df['country'].value_counts().plot(ax=ax, kind='bar', 
+                                         title ='Tennis keyword tweets by country', alpha=0.6)
+
+
+
 
