@@ -39,23 +39,34 @@ class StreamRecorder(StreamListener):
                     f.write(raw_data)
                 self.geo_tweet_count +=1
                 self.all_tweet_count +=1
-
+                if self.geo_tweet_count % 1 == 0:
+                    print ("\r%s - tweets found | %s with geolocation"%(self.all_tweet_count,
+                                                                        self.geo_tweet_count), end="", sep="")
             else:
                 with open(self.output_loc, 'a') as f:
                     f.write(raw_data)
                 self.all_tweet_count+=1
+                if self.all_tweet_count % 5 == 0:
+                    print ("\r%s - tweets found | %s with geolocation"%(self.all_tweet_count,
+                                                                        self.geo_tweet_count), end="", sep="")
             return True
         else:
             # Timeout reached so stop stream
+            t = time.strftime("%y-%m-%d %H:%M")
+            print ("[%s] Streamer Finished (Timeout=%s)"%(t,self.limit))
             return False
         
         
     def on_error(self, status_code):
         print (sys.stderr, 'Encountered error with status code:', status_code)
+        t = time.strftime("%y-%m-%d %H:%M")
+        print ("[%s] Stream restarted"%t)
         sys.stdout.flush()
         return False # Don't kill the stream
     
     def on_timeout(self):
+        t = time.strftime("%y-%m-%d %H:%M")
+        print ("[%s] Streamer Finished"%t)
         return False
     
 class TwitterStreamer(StreamListener):
