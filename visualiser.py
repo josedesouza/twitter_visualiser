@@ -39,3 +39,6 @@ tweets_df[tweets_df.lang == 'it']['text'].groupby(pd.TimeGrouper(freq='1min')).c
 ax.set_title('Volume of Tennis-related tweets over time by country')
 ax.legend()
 ax.set_xlabel('Minute'); ax.set_ylabel('Volume of Tweets')
+plt.show()
+
+
