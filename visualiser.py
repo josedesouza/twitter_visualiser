@@ -14,7 +14,7 @@ class TwitterVisualiser(object):
        
     def __init__(self, path_to_data):
         # 1. Load in tweet file
-        self.data = self.load_data()
+        self.data = self.load_data(path_to_data)
         # 2. Parse tweets into dataframe
         self.tweets_df = self.create_tweet_dataframe(self.data)
         
@@ -62,6 +62,7 @@ class TwitterVisualiser(object):
         
     def plot_language(self):
         # PLot language
+        tweets_df = self.tweets_df
         fig, ax = plt.subplots(1,1,figsize=(6,3))
         tweets_df['lang'].value_counts().plot(ax=ax, kind='bar', 
                                                  title ='Tennis keyword tweets by Language', color='green')
