@@ -17,8 +17,7 @@ class TwitterVisualiser(object):
         
     def load_data(self, path_to_data):
         # Load in tweet dump file
-        tweets_data_path = './all_tennis_tweets.txt'
-
+        tweets_data_path = path_to_data
         tweets_data = []
         tweets_file = open(tweets_data_path, "r")
         for line in tweets_file:
