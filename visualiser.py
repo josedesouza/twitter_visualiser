@@ -9,6 +9,9 @@ from datetime import datetime
 
 
 class TwitterVisualiser(object):
+    """Loads in a .txt file of tweets and parses into pandas dataframe for visualisation
+       Can then visualise either tweet volume over time, country or language of the tweet"""
+       
     def __init__(self, path_to_data):
         # 1. Load in tweet file
         self.data = self.load_data()
